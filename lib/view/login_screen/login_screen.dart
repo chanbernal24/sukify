@@ -1,5 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:sukify/view/otp_screen/otp_screen.dart';
 import 'package:sukify/view/signup_screen/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -26,7 +27,11 @@ class _MyWidgetState extends State<LoginScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leading: Text(""),
+        title: const Text(
+          "Log In",
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
+        automaticallyImplyLeading: false,
         toolbarHeight: 82,
       ),
       body: SingleChildScrollView(
@@ -54,13 +59,14 @@ class _MyWidgetState extends State<LoginScreen> {
               loginButton(),
               signUpRow(),
               const SizedBox(
-                height: 50,
+                height: 18,
               ),
-              connectRow(),
-              const SizedBox(
-                height: 22,
-              ),
-              googleAndFacebookButton(),
+              const Text(
+                "Once you've entered your credentials, tap 'Login' and if they are correct, you'll be directed to your account dashboard. Thank you for choosing our app for your shopping needs!",
+                style: TextStyle(
+                  color: Color.fromRGBO(0, 0, 0, .2),
+                ),
+              )
             ],
           ),
         ),
@@ -155,7 +161,13 @@ class _MyWidgetState extends State<LoginScreen> {
             ),
             backgroundColor:
                 MaterialStatePropertyAll(Color.fromRGBO(69, 137, 216, 1))),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OTPScreen(mobileNumber: "+6394521358714"),
+              ));
+        },
         child: Text(
           "Login",
         ),
@@ -248,7 +260,7 @@ class _MyWidgetState extends State<LoginScreen> {
         alignment: Alignment.center,
         height: MediaQuery.of(context).size.height * .06,
         width: MediaQuery.of(context).size.width * .22,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromRGBO(69, 137, 246, 1),
           borderRadius: BorderRadius.horizontal(left: Radius.circular(10)),
         ),

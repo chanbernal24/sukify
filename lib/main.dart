@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
-import 'package:sukify/view/signup_screen/signup_screen.dart';
 
 void main() {
   runApp(const MyApp());

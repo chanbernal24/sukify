@@ -38,6 +38,8 @@ dependencies:
   flutter_native_splash: ^2.3.11
   smooth_page_indicator: ^1.1.0
   country_picker: ^2.0.25
+  pin_code_text_field: ^1.8.0
+  google_fonts: ^6.2.0
 
 flutter_native_splash:
   image: lib/assets/Sukify_logo.png

@@ -16,7 +16,11 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: backButton(),
+        title: const Text(
+          "Sign Up",
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
+        automaticallyImplyLeading: false,
         toolbarHeight: 82,
       ),
       body: SingleChildScrollView(
@@ -45,8 +49,13 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: numberField()),
                 ],
               ),
+              loginRow(),
               const SizedBox(
-                height: 42,
+                height: 30,
+              ),
+              enrollText(),
+              const SizedBox(
+                height: 16,
               ),
               createButton(),
             ],
@@ -56,19 +65,19 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  Widget backButton() {
-    return IconButton(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        color: Colors.black,
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: ((context) => LoginScreen()),
-              ));
-        },
-        icon: const Icon(Icons.arrow_back));
-  } //backButton
+  // Widget backButton() {
+  //   return IconButton(
+  //       padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+  //       color: Colors.black,
+  //       onPressed: () {
+  //         Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: ((context) => LoginScreen()),
+  //             ));
+  //       },
+  //       icon: const Icon(Icons.arrow_back));
+  // } //backButton
 
   Widget countryPicker() {
     return InkWell(
@@ -148,26 +157,59 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
       ),
     );
-  } //userField
-}
+  }
 
-Widget createButton() {
-  return SizedBox(
-    height: 47,
-    width: 370,
-    child: FilledButton(
-      style: ButtonStyle(
-          shape: MaterialStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
+  Widget createButton() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: FilledButton(
+        style: ButtonStyle(
+            shape: MaterialStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
             ),
-          ),
-          backgroundColor:
-              const MaterialStatePropertyAll(Color.fromRGBO(69, 137, 216, 1))),
-      onPressed: () {},
-      child: const Text(
-        "Sign up",
+            backgroundColor: const MaterialStatePropertyAll(
+                Color.fromRGBO(69, 137, 216, 1))),
+        onPressed: () {},
+        child: const Text(
+          "Sign up",
+        ),
       ),
-    ),
-  );
-} //createButton
+    ); //userField
+  }
+
+  Widget enrollText() {
+    return Container(
+      alignment: Alignment.centerLeft,
+      child: const Text(
+        "By enrolling your mobile phone number, you consent to receive automated security notifications via text message from Sukify.",
+        style: TextStyle(color: Color.fromRGBO(0, 0, 0, .2)),
+      ),
+    );
+  }
+
+  Widget loginRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          "Already have an account?",
+          style: TextStyle(color: Color.fromRGBO(0, 0, 0, .2)),
+        ),
+        TextButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => LoginScreen()),
+                  ));
+            },
+            child: const Text(
+              "Log In",
+              style: TextStyle(color: Color.fromRGBO(69, 137, 216, 1)),
+            ))
+      ],
+    );
+  }
+}
