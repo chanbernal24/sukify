@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
+import 'package:sukify/view/user_screen/navbar_main.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const OnboardingScreen(),
+      home: const NavbarPageMainPage(),
     );
   }
 }
