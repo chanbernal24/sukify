@@ -45,23 +45,29 @@ class _NavbarPageMainPageState extends State<NavbarPageMainPage> {
     );
   }
 
+//custom widgets
   Widget BottomNavBarConfig() {
     return Container(
       height: 80,
       decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(topRight: Radius.circular(20)),
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            topLeft: Radius.circular(20),
+          ),
           boxShadow: [
             BoxShadow(
               color: Colors.grey,
-              blurRadius: 1,
+              blurRadius: 2,
             )
           ]),
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(20.0),
+          topLeft: Radius.circular(20.0),
         ),
         child: BottomNavigationBar(
           iconSize: 25.0,
+          selectedItemColor: const Color.fromRGBO(69, 137, 216, 1),
           unselectedLabelStyle: const TextStyle(
             fontFamily: 'Inter',
             fontSize: 16.0,
@@ -100,7 +106,7 @@ class _NavbarPageMainPageState extends State<NavbarPageMainPage> {
         ),
       ),
     );
-  } //NavBarStyle
+  } //BottomNavBarConfig
 
   Widget SearchBarConfig() {
     return Container(
@@ -155,5 +161,5 @@ class _NavbarPageMainPageState extends State<NavbarPageMainPage> {
         ],
       ),
     );
-  }
+  } //SearchBarConfig
 }
