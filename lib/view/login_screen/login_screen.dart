@@ -1,5 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:sukify/view/signup_screen/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -171,7 +172,13 @@ class _MyWidgetState extends State<LoginScreen> {
           style: TextStyle(color: Color.fromRGBO(0, 0, 0, .2)),
         ),
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => const SignupScreen()),
+                  ));
+            },
             child: const Text(
               "Sign Up",
               style: TextStyle(color: Color.fromRGBO(69, 137, 216, 1)),
