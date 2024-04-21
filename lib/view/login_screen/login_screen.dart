@@ -162,13 +162,13 @@ class _MyWidgetState extends State<LoginScreen> {
             backgroundColor:
                 MaterialStatePropertyAll(Color.fromRGBO(69, 137, 216, 1))),
         onPressed: () {
-          Navigator.push(
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => OTPScreen(mobileNumber: "+6394521358714"),
               ));
         },
-        child: Text(
+        child: const Text(
           "Login",
         ),
       ),

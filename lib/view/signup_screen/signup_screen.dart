@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:sukify/view/login_screen/login_screen.dart';
+import 'package:sukify/view/otp_screen/otp_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -171,7 +172,13 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
             backgroundColor: const MaterialStatePropertyAll(
                 Color.fromRGBO(69, 137, 216, 1))),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OTPScreen(mobileNumber: "+6394521358714"),
+              ));
+        },
         child: const Text(
           "Sign up",
         ),
