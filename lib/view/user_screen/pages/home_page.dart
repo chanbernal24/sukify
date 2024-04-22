@@ -112,6 +112,9 @@ class _HomePageState extends State<HomePage> {
   Widget ProductCarousel() {
     return CarouselSlider.builder(
       options: CarouselOptions(
+        padEnds: false,
+        pageSnapping: false,
+        viewportFraction: .6,
         height: 130,
         disableCenter: true,
         enableInfiniteScroll: false,
@@ -127,7 +130,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildImage(String carouselImage, int index) => Container(
         clipBehavior: Clip.antiAlias,
-        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        margin: const EdgeInsets.only(left: 8.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
         ),
