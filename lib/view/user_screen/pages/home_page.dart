@@ -1,10 +1,10 @@
-// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages
+// ignore_for_file: non_constant_identifier_names
 
-// ignore: unnecessary_import
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:sukify/constants/constants.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -27,25 +27,28 @@ class _HomePageState extends State<HomePage> {
         child: SearchBarConfig(),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 24,
-            ),
-            CarouselSlider.builder(
-              options: CarouselOptions(
-                height: 130,
-                disableCenter: true,
-                enableInfiniteScroll: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 24),
+              ProductCarousel(),
+              const SizedBox(height: 34),
+              const Text(
+                'Categories',
+                style: TextStyle(
+                  color: Color.fromRGBO(0, 0, 0, 1),
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Inter',
+                ),
               ),
-              itemCount: carouselImages.length,
-              itemBuilder: (context, index, realIndex) {
-                final carouselImage = carouselImages[index];
-
-                return buildImage(carouselImage, index);
-              },
-            )
-          ],
+              const SizedBox(height: 18),
+              Categories(),
+              const SizedBox(height: 22),
+            ],
+          ),
         ),
       ),
     );
@@ -106,6 +109,22 @@ class _HomePageState extends State<HomePage> {
     );
   } //SearchBarConfig
 
+  Widget ProductCarousel() {
+    return CarouselSlider.builder(
+      options: CarouselOptions(
+        height: 130,
+        disableCenter: true,
+        enableInfiniteScroll: false,
+      ),
+      itemCount: carouselImages.length,
+      itemBuilder: (context, index, realIndex) {
+        final carouselImage = carouselImages[index];
+
+        return buildImage(carouselImage, index);
+      },
+    ); //ProductCarousel
+  }
+
   Widget buildImage(String carouselImage, int index) => Container(
         clipBehavior: Clip.antiAlias,
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -116,17 +135,55 @@ class _HomePageState extends State<HomePage> {
           carouselImage,
           fit: BoxFit.cover,
         ),
-      );
+      ); //buildImage | carousel display configs
+
+  Widget Categories() {
+    return SizedBox(
+      height: 105,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (content, index) {
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: const Color.fromRGBO(0, 0, 0, .1),
+              ),
+            ),
+            margin: const EdgeInsets.only(right: 16),
+            child: Column(
+              children: [
+                Image(
+                  image: AssetImage(
+                    'lib/assets/categories/${categories[index]}.png',
+                  ),
+                  height: 72,
+                ),
+                Text(
+                  categories[index],
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontFamily: 'Inter',
+                    color: Color.fromRGBO(53, 53, 53, 1),
+                  ),
+                )
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 }
 
 
 
 
 
-
-  // Widget ProductCarousel() {
-  //   return
-  // } //ProductCarousel
+// Widget ProductCarousel() {
+//   return
+// } //ProductCarousel
 
 // return CarouselSlider(
 //   options: CarouselOptions(
