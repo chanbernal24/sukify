@@ -35,10 +35,6 @@ class _NavbarPageMainPageState extends State<NavbarPageMainPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(82),
-          child: SearchBarConfig(),
-        ),
         body: pages[selectedIndex],
         bottomNavigationBar: BottomNavBarConfig(),
       ),
@@ -108,58 +104,5 @@ class _NavbarPageMainPageState extends State<NavbarPageMainPage> {
     );
   } //BottomNavBarConfig
 
-  Widget SearchBarConfig() {
-    return Container(
-      height: 82.0,
-      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: 335.0,
-            height: 52.0,
-            child: TextField(
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                hintText: 'Search....',
-                hintStyle: const TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, .2),
-                  fontFamily: 'Inter',
-                ),
-                contentPadding: const EdgeInsets.all(18.0),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: Color.fromRGBO(0, 0, 0, .2),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Color.fromRGBO(0, 0, 0, .3),
-                  ),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Color.fromRGBO(0, 0, 0, .3),
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Color.fromRGBO(0, 0, 0, .5),
-                  ),
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Color.fromRGBO(0, 0, 0, .3),
-                  ),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  } //SearchBarConfig
+
 }
