@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
+import 'package:sukify/controller/services/auth_services/auth_services.dart';
 
 class OTPScreen extends StatefulWidget {
   String mobileNumber;
@@ -11,6 +12,9 @@ class OTPScreen extends StatefulWidget {
 }
 
 class _OTPScreenState extends State<OTPScreen> {
+  TextEditingController controller = TextEditingController();
+  String? otpValue;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +48,15 @@ class _OTPScreenState extends State<OTPScreen> {
               height: 30,
             ),
             verifyButton(),
+            TextButton(
+              onPressed: () {},
+              child: const Text(
+                "Resend OTP",
+                style: TextStyle(
+                  color: Color.fromRGBO(69, 137, 216, 1),
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -81,7 +94,14 @@ class _OTPScreenState extends State<OTPScreen> {
   }
 
   Widget pincodeField() {
-    return const PinCodeTextField(
+    return PinCodeTextField(
+      pinBoxWidth: 60,
+      maxLength: 6,
+      onTextChanged: (value) {
+        otpValue = value;
+        print(controller.text.trim());
+      },
+      controller: controller,
       defaultBorderColor: Colors.black26,
       hasTextBorderColor: Color.fromRGBO(69, 137, 216, 1),
       pinBoxRadius: 10,
@@ -96,7 +116,12 @@ class _OTPScreenState extends State<OTPScreen> {
     return SizedBox(
       width: MediaQuery.of(context).size.width * .64,
       child: FilledButton(
-        onPressed: () {},
+        onPressed: () {
+          Authservices.verifyOTP(
+            context: context,
+            otp: controller.text.trim(),
+          );
+        },
         style: ButtonStyle(
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(

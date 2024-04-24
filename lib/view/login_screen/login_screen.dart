@@ -1,5 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:sukify/controller/services/auth_services/auth_services.dart';
 import 'package:sukify/view/otp_screen/otp_screen.dart';
 import 'package:sukify/view/signup_screen/signup_screen.dart';
 
@@ -12,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 
 class _MyWidgetState extends State<LoginScreen> {
   String currentCountryCode = "+63";
+  TextEditingController mobilerController = TextEditingController();
 
   bool isEyeTapped = true;
   void setEye() {
@@ -75,9 +77,10 @@ class _MyWidgetState extends State<LoginScreen> {
   }
 
   Widget emailTextField() {
-    return const TextField(
+    return TextField(
+      controller: mobilerController,
       keyboardType: TextInputType.number,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.horizontal(right: Radius.circular(10)),
           borderSide: BorderSide(
@@ -162,11 +165,8 @@ class _MyWidgetState extends State<LoginScreen> {
             backgroundColor:
                 MaterialStatePropertyAll(Color.fromRGBO(69, 137, 216, 1))),
         onPressed: () {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => OTPScreen(mobileNumber: "+6394521358714"),
-              ));
+          Authservices.receiveOTP(
+              context, '$currentCountryCode${mobilerController.text.trim()}');
         },
         child: const Text(
           "Login",

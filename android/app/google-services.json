@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "73404012677",
+    "project_id": "sukify-d7676",
+    "storage_bucket": "sukify-d7676.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73404012677:android:b8eeac87baaa7cb91f71ec",
+        "android_client_info": {
+          "package_name": "com.example.sukify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYxeA6N0cK_wRbwRFQBXCO8y6MoE_sR-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
