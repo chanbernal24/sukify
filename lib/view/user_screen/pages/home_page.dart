@@ -14,11 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final carouselImages = [
-    'lib/assets/carousel_holder1.jpg',
-    'lib/assets/carousel_holder2.jpg',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,15 +22,15 @@ class _HomePageState extends State<HomePage> {
         child: SearchBarConfig(),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 24),
-              ProductCarousel(),
-              const SizedBox(height: 34),
-              const Text(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 24),
+            Carousel(),
+            const SizedBox(height: 34),
+            const Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text(
                 'Categories',
                 style: TextStyle(
                   color: Color.fromRGBO(0, 0, 0, 1),
@@ -44,11 +39,11 @@ class _HomePageState extends State<HomePage> {
                   fontFamily: 'Inter',
                 ),
               ),
-              const SizedBox(height: 18),
-              Categories(),
-              const SizedBox(height: 22),
-            ],
-          ),
+            ),
+            const SizedBox(height: 18),
+            Categories(),
+            const SizedBox(height: 22),
+          ],
         ),
       ),
     );
@@ -62,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            width: 335.0,
+            width: MediaQuery.of(context).size.width * .88,
             height: 52.0,
             child: TextField(
               keyboardType: TextInputType.text,
@@ -109,41 +104,11 @@ class _HomePageState extends State<HomePage> {
     );
   } //SearchBarConfig
 
-  Widget ProductCarousel() {
-    return CarouselSlider.builder(
-      options: CarouselOptions(
-        padEnds: false,
-        pageSnapping: false,
-        viewportFraction: .6,
-        height: 130,
-        disableCenter: true,
-        enableInfiniteScroll: false,
-      ),
-      itemCount: carouselImages.length,
-      itemBuilder: (context, index, realIndex) {
-        final carouselImage = carouselImages[index];
-
-        return buildImage(carouselImage, index);
-      },
-    ); //ProductCarousel
-  }
-
-  Widget buildImage(String carouselImage, int index) => Container(
-        clipBehavior: Clip.antiAlias,
-        margin: const EdgeInsets.only(left: 8.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        child: Image.asset(
-          carouselImage,
-          fit: BoxFit.cover,
-        ),
-      ); //buildImage | carousel display configs
-
   Widget Categories() {
     return SizedBox(
       height: 105,
       child: ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         itemBuilder: (content, index) {
@@ -155,61 +120,117 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             margin: const EdgeInsets.only(right: 16),
-            child: Column(
+            child: Row(
               children: [
-                Image(
-                  image: AssetImage(
-                    'lib/assets/categories/${categories[index]}.png',
-                  ),
-                  height: 72,
+                Column(
+                  children: [
+                    Image(
+                      image: AssetImage(
+                        'lib/assets/categories/${categories[index]}.png',
+                      ),
+                      height: 72,
+                    ),
+                    Text(
+                      categories[index],
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Inter',
+                        color: Color.fromRGBO(53, 53, 53, 1),
+                      ),
+                    )
+                  ],
                 ),
-                Text(
-                  categories[index],
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontFamily: 'Inter',
-                    color: Color.fromRGBO(53, 53, 53, 1),
-                  ),
-                )
               ],
             ),
           );
         },
       ),
     );
-  }
+  } //Categories
+
+  Widget Carousel() {
+    return SizedBox(
+      height: 130,
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        scrollDirection: Axis.horizontal,
+        children: [
+          //FIRST FEATURED PRODUCT
+          Container(
+            padding: const EdgeInsets.all(20),
+            width: MediaQuery.of(context).size.width * .52,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              image: const DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('lib/assets/carousel_holder1.jpg'),
+              ),
+            ),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Featured',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 12,
+                    color: Color.fromRGBO(240, 240, 240, 1),
+                  ),
+                ),
+                Text(
+                  'Name',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w300,
+                    fontSize: 10,
+                    color: Color.fromRGBO(240, 240, 240, 1),
+                  ),
+                )
+              ],
+            ),
+          ),
+          const SizedBox(
+            width: 8,
+          ),
+
+          //SECOND FEATURED PRODUCT
+          Container(
+            padding: const EdgeInsets.all(20),
+            width: MediaQuery.of(context).size.width * .52,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              image: const DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('lib/assets/carousel_holder2.jpg'),
+              ),
+            ),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Featured',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 12,
+                    color: Color.fromRGBO(240, 240, 240, 1),
+                  ),
+                ),
+                Text(
+                  'Name',
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w300,
+                    fontSize: 10,
+                    color: Color.fromRGBO(240, 240, 240, 1),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  } //Carousel
 }
-
-
-
-
-
-// Widget ProductCarousel() {
-//   return
-// } //ProductCarousel
-
-// return CarouselSlider(
-//   options: CarouselOptions(
-//     height: 130.0,
-//     disableCenter: true,
-//     enableInfiniteScroll: false,
-//   ),
-//   items: carouselList.map((i) {
-//     return Builder(
-//       builder: (BuildContext context) {
-//         return Container(
-//           width: MediaQuery.of(context).size.width,
-//           margin: const EdgeInsets.symmetric(horizontal: 8.0),
-//           decoration: BoxDecoration(
-//             color: Colors.amber,
-//             borderRadius: BorderRadius.circular(15),
-//             image: DecorationImage(
-//               image: AssetImage('lib/assets/carousel_slides/${i}'),
-//               fit: BoxFit.cover,
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }).toList(),
-// );

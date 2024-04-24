@@ -3,16 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sukify/controller/provider/auth_provider/auth_provider.dart';
 import 'package:sukify/view/login_screen/signInLogic.dart';
-import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
 import 'package:sukify/view/user_screen/navbar_main.dart';
 
 import 'firebase_options.dart';
 
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+//CODE BLOCK BELOW WAS COMMENTED OUT TO BYPASS AUTHENTICATION
+
+// Future main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   runApp(const MyApp());
+// }
+
+// THE CODE ABOVE WAS REPLACED BY DEFAULT VOID MAIN FOR THE APP TO RUN
+void main() {
   runApp(const MyApp());
 }
 
@@ -22,18 +28,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<Authprovider>(create: (_) => Authprovider())
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Sukify',
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
-        home: SignInLogic(),
+    return
+
+        // MULTIPROVIDER COMMENTED OUT.
+
+        // MultiProvider(
+        //   providers: [
+        //     ChangeNotifierProvider<Authprovider>(create: (_) => Authprovider())
+        //   ],
+        //   child:
+
+        MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Sukify',
+      theme: ThemeData(
+        useMaterial3: true,
       ),
+      home: NavbarPageMainPage(),
+
+      // ), // MULTIPROVIDED ENCLOSER
     );
   }
 }
