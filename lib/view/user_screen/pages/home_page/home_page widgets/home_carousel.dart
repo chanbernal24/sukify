@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sukify/constants/constants.dart';
 
 class Carousel extends StatefulWidget {
   const Carousel({super.key});
@@ -12,85 +13,53 @@ class _CarouselState extends State<Carousel> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 130,
-      child: ListView(
+      width: MediaQuery.of(context).size.width,
+      child: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         scrollDirection: Axis.horizontal,
-        children: [
-          //FIRST FEATURED PRODUCT
-          Container(
+        itemCount: carouselPhoto.length,
+        itemBuilder: (content, index) {
+          return Container(
             padding: const EdgeInsets.all(10),
             width: MediaQuery.of(context).size.width * .52,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              image: const DecorationImage(
+              image: DecorationImage(
+                image: AssetImage(
+                    'lib/assets/carousel/${carouselPhoto[index]}.jpg'),
                 fit: BoxFit.cover,
-                image: AssetImage('lib/assets/carousel_holder1.jpg'),
               ),
+              borderRadius: BorderRadius.circular(15),
             ),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            margin: const EdgeInsets.only(right: 8),
+            child: Row(
               children: [
-                Text(
-                  'Featured',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 12,
-                    color: Color.fromRGBO(240, 240, 240, 1),
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Text(
+                      'Featured',
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 12,
+                        color: Color.fromRGBO(240, 240, 240, 1),
+                      ),
+                    ),
+                    Text(
+                      carouselPhoto[index],
+                      style: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w300,
+                        fontSize: 10,
+                        color: Color.fromRGBO(240, 240, 240, 1),
+                      ),
+                    )
+                  ],
                 ),
-                Text(
-                  'Name',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w300,
-                    fontSize: 10,
-                    color: Color.fromRGBO(240, 240, 240, 1),
-                  ),
-                )
               ],
             ),
-          ),
-          const SizedBox(
-            width: 8,
-          ),
-
-          //SECOND FEATURED PRODUCT
-          Container(
-            padding: const EdgeInsets.all(10),
-            width: MediaQuery.of(context).size.width * .52,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              image: const DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('lib/assets/carousel_holder2.jpg'),
-              ),
-            ),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Featured',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 12,
-                    color: Color.fromRGBO(240, 240, 240, 1),
-                  ),
-                ),
-                Text(
-                  'Name',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w300,
-                    fontSize: 10,
-                    color: Color.fromRGBO(240, 240, 240, 1),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
