@@ -3,10 +3,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:sukify/view/user_screen/pages/cart_page.dart';
-import 'package:sukify/view/user_screen/pages/home_page.dart';
-import 'package:sukify/view/user_screen/pages/menu_page.dart';
-import 'package:sukify/view/user_screen/pages/profile_page.dart';
+import 'package:sukify/view/user_screen/pages/cart_page/cart_page.dart';
+import 'package:sukify/view/user_screen/pages/home_page/home_page.dart';
+import 'package:sukify/view/user_screen/pages/menu_page/menu_page.dart';
+import 'package:sukify/view/user_screen/pages/profile_page/profile_page.dart';
 
 class NavbarPageMainPage extends StatefulWidget {
   const NavbarPageMainPage({super.key});
@@ -103,6 +103,4 @@ class _NavbarPageMainPageState extends State<NavbarPageMainPage> {
       ),
     );
   } //BottomNavBarConfig
-
-
 }

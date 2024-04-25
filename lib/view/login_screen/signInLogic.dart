@@ -3,7 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:sukify/controller/services/auth_services/auth_services.dart';
 import 'package:sukify/view/login_screen/login_screen.dart';
 import 'package:sukify/view/user_screen/navbar_main.dart';
-import 'package:sukify/view/user_screen/pages/home_page.dart';
+import 'package:sukify/view/user_screen/pages/home_page/home_page.dart';
 
 class SignInLogic extends StatefulWidget {
   const SignInLogic({super.key});
