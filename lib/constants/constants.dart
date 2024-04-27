@@ -87,10 +87,10 @@ List<String> cartProductQuantity = [
 ];
 
 List<String> cartProductPrice = [
-  '00',
-  '00',
+  '2140',
+  '100',
   '99999999999',
-  '00',
-  '00',
-  '00',
+  '401',
+  '221',
+  '50',
 ];

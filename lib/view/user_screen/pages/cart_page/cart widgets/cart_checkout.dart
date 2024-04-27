@@ -59,12 +59,12 @@ class _CartCheckoutState extends State<CartCheckout> {
             child: Container(
               height: 47,
               width: 122,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(14)),
               child: FilledButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
                         const Color.fromRGBO(69, 137, 216, 1)),
+                    shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14))),
                   ),
                   onPressed: () {},
                   child: const Text(

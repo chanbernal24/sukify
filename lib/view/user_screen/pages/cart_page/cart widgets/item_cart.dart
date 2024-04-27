@@ -18,7 +18,7 @@ class _ItemCartState extends State<ItemCart> {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.17,
+          height: MediaQuery.of(context).size.height * 0.16,
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.fromLTRB(20, 0, 20, 8),
           child: Row(
@@ -37,7 +37,8 @@ class _ItemCartState extends State<ItemCart> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                      border: Border.all(color: Color.fromRGBO(0, 0, 0, .5)),
+                      border:
+                          Border.all(color: const Color.fromRGBO(0, 0, 0, .05)),
                       borderRadius: BorderRadius.circular(14)),
                   child: Row(
                     children: [
