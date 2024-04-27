@@ -47,6 +47,7 @@ dependencies:
   fluttertoast: ^8.2.5
   page_transition: ^2.1.0
   sticky_headers: ^0.3.0+2
+  roundcheckbox: ^2.0.5
 
 # flutter_native_splash:
 #   image: lib/assets/Sukify_logo.png
@@ -82,6 +83,7 @@ flutter:
     - lib/assets/new_arrivals/
     - lib/assets/best_selling/
     - lib/assets/carousel/
+    - lib/assets/cart/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

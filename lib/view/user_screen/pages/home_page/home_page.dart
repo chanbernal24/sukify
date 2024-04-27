@@ -18,45 +18,47 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            StickyHeader(
-              header: SearchBarConfig(),
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 20),
-                  Carousel(),
-                  const SizedBox(height: 34),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      'Categories',
-                      style: TextStyle(
-                        color: Color.fromRGBO(0, 0, 0, 1),
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Inter',
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              StickyHeader(
+                header: SearchBarConfig(),
+                content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 20),
+                    Carousel(),
+                    const SizedBox(height: 34),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'Categories',
+                        style: TextStyle(
+                          color: Color.fromRGBO(0, 0, 0, 1),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Inter',
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  Categories(),
-                  const SizedBox(height: 22),
-                  NewArrivalText(),
-                  const SizedBox(height: 26),
-                  NewArrival(),
-                  const SizedBox(height: 30),
-                  BestSellingText(),
-                  const SizedBox(height: 26),
-                  BestSelling(),
-                  const SizedBox(height: 20)
-                ], //children
+                    const SizedBox(height: 18),
+                    Categories(),
+                    const SizedBox(height: 22),
+                    NewArrivalText(),
+                    const SizedBox(height: 26),
+                    NewArrival(),
+                    const SizedBox(height: 30),
+                    BestSellingText(),
+                    const SizedBox(height: 26),
+                    BestSelling(),
+                    const SizedBox(height: 20)
+                  ], //children
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

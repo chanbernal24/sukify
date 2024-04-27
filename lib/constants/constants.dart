@@ -40,3 +40,57 @@ List<String> bestSellingRatings = [
   '0.0',
   '0.0',
 ];
+
+List<String> cartImages = [
+  'hanfu.jpg',
+  'knitted_fashion.jpg',
+  'leather_jacket.jpg',
+  'pink_shoes.jpg',
+  'USA_shirt_woman.jpg',
+  'woman_jacket.jpg'
+];
+
+List<String> cartProductName = [
+  'Hanfu (Pink)- for Woman',
+  'Knitted Jacket - Woman Fashion',
+  'Black Leather Jacket - Men',
+  'Original Converse - Pink',
+  'USA shirt - Woman',
+  'Fashion Jacket - Woman'
+];
+
+List<String> cartProductBrand = [
+  'Hayamusa',
+  'Appari',
+  'Unknown',
+  'Converse',
+  'Blue Corner',
+  'Louis Vuitton',
+];
+
+List<String> cartProductSize = [
+  'M',
+  'L',
+  'L',
+  '9',
+  'S',
+  'XL',
+];
+
+List<String> cartProductQuantity = [
+  '1',
+  '1',
+  '1',
+  '1',
+  '1',
+  '1',
+];
+
+List<String> cartProductPrice = [
+  '00',
+  '00',
+  '99999999999',
+  '00',
+  '00',
+  '00',
+];
