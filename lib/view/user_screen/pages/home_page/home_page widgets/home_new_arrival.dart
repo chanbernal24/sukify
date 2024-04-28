@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sukify/constants/constants.dart';
 
 class NewArrival extends StatefulWidget {
@@ -36,28 +37,32 @@ class _NewArrivalState extends State<NewArrival> {
             margin: const EdgeInsets.only(right: 14),
             child: Row(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      newArrivalPhoto[index],
-                      style: const TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 12,
-                        color: Color.fromRGBO(240, 240, 240, 1),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        overflow: TextOverflow.ellipsis,
+                        newArrivalPhoto[index],
+                        style: const TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 12,
+                          color: Color.fromRGBO(240, 240, 240, 1),
+                        ),
                       ),
-                    ),
-                    Text(
-                      '\$${newArrivalPrices[index]}',
-                      style: const TextStyle(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w300,
-                        fontSize: 10,
-                        color: Color.fromRGBO(240, 240, 240, 1),
-                      ),
-                    )
-                  ],
+                      Text(
+                        overflow: TextOverflow.ellipsis,
+                        '\$${newArrivalPrices[index]}',
+                        style: const TextStyle(
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w300,
+                          fontSize: 10,
+                          color: Color.fromRGBO(240, 240, 240, 1),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),

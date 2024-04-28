@@ -94,3 +94,27 @@ List<String> cartProductPrice = [
   '221',
   '50',
 ];
+
+List<String> orderHistoryPhoto = [
+  'lib/assets/order_history/black_leather.jpeg',
+  'lib/assets/order_history/coat.jpg',
+  'lib/assets/order_history/plain_black.jpg',
+  'lib/assets/order_history/simple_T-shirt.jpg',
+  'lib/assets/order_history/socker.jpg',
+];
+
+List<String> orderHistoryPrices = [
+  '421',
+  '1236',
+  '7772',
+  '4123',
+  '2531',
+];
+
+List<String> orderHistoryProduct = [
+  'Black Leather Jacket',
+  'Stylish Coat',
+  'Plain Black T-shirt',
+  'T-shirt | Light Bulb',
+  'Argentina Soccer Team T-shirt',
+];

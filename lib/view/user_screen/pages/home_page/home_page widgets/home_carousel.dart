@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sukify/constants/constants.dart';
 
 class Carousel extends StatefulWidget {
@@ -33,28 +34,31 @@ class _CarouselState extends State<Carousel> {
             margin: const EdgeInsets.only(right: 8),
             child: Row(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Text(
-                      'Featured',
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 12,
-                        color: Color.fromRGBO(240, 240, 240, 1),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text(
+                        'Featured',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 12,
+                          color: Color.fromRGBO(240, 240, 240, 1),
+                        ),
                       ),
-                    ),
-                    Text(
-                      carouselPhoto[index],
-                      style: const TextStyle(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w300,
-                        fontSize: 10,
-                        color: Color.fromRGBO(240, 240, 240, 1),
-                      ),
-                    )
-                  ],
+                      Text(
+                        overflow: TextOverflow.ellipsis,
+                        carouselPhoto[index],
+                        style: const TextStyle(
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w300,
+                          fontSize: 10,
+                          color: Color.fromRGBO(240, 240, 240, 1),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),

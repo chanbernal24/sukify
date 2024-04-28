@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sukify/controller/provider/auth_provider/auth_provider.dart';
 import 'package:sukify/view/login_screen/signInLogic.dart';
 import 'package:sukify/view/user_screen/navbar_main.dart';
+import 'package:sukify/view/user_screen/pages/profile_page/your%20account%20info/user_account_settings.dart';
 
 import 'firebase_options.dart';
 

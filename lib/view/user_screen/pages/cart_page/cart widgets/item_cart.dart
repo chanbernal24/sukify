@@ -14,6 +14,7 @@ class _ItemCartState extends State<ItemCart> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      physics: const ScrollPhysics(),
       itemCount: cartImages.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {

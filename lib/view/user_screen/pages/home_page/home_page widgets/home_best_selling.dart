@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sukify/constants/constants.dart';
 
 class BestSelling extends StatefulWidget {
@@ -36,48 +37,52 @@ class _BestSellingState extends State<BestSelling> {
             margin: const EdgeInsets.only(right: 14),
             child: Row(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      bestSellingPhoto[index],
-                      style: const TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 12,
-                        color: Color.fromRGBO(240, 240, 240, 1),
-                      ),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          '\$${bestSellingPrices[index]}',
-                          style: const TextStyle(
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w300,
-                            fontSize: 10,
-                            color: Color.fromRGBO(240, 240, 240, 1),
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                        const Icon(
-                          Icons.star_border_outlined,
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        overflow: TextOverflow.ellipsis,
+                        bestSellingPhoto[index],
+                        style: const TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 12,
                           color: Color.fromRGBO(240, 240, 240, 1),
-                          size: 16,
                         ),
-                        const SizedBox(width: 2),
-                        Text(
-                          bestSellingRatings[index],
-                          style: const TextStyle(
-                            fontFamily: 'Inter',
-                            fontSize: 12,
-                            color: Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            overflow: TextOverflow.ellipsis,
+                            '\$${bestSellingPrices[index]}',
+                            style: const TextStyle(
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w300,
+                              fontSize: 10,
+                              color: Color.fromRGBO(240, 240, 240, 1),
+                            ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                          const SizedBox(width: 5),
+                          const Icon(
+                            Icons.star_border_outlined,
+                            color: Color.fromRGBO(240, 240, 240, 1),
+                            size: 16,
+                          ),
+                          const SizedBox(width: 2),
+                          Text(
+                            bestSellingRatings[index],
+                            style: const TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 12,
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),

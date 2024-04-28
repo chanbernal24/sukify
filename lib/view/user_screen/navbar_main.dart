@@ -44,6 +44,7 @@ class _NavbarPageMainPageState extends State<NavbarPageMainPage> {
 //custom widgets
   Widget BottomNavBarConfig() {
     return Container(
+      clipBehavior: Clip.hardEdge,
       height: 80,
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -57,6 +58,7 @@ class _NavbarPageMainPageState extends State<NavbarPageMainPage> {
             )
           ]),
       child: ClipRRect(
+        clipBehavior: Clip.hardEdge,
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(20.0),
           topLeft: Radius.circular(20.0),
