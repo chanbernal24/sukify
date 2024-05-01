@@ -19,9 +19,9 @@ class ProfilePageState extends State<ProfilePage> {
           child: Column(
             children: [
               ProfileGreetings(),
-              SizedBox(height: 32),
+              SizedBox(height: 21),
               YourButtons(),
-              SizedBox(height: 42),
+              SizedBox(height: 31),
               OrderHistory(),
             ],
           ),

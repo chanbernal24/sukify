@@ -15,10 +15,10 @@ class _OrderHistoryState extends State<OrderHistory> {
       children: [
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Your Orders',
                 style: TextStyle(
                     fontFamily: 'Inter',
@@ -26,32 +26,23 @@ class _OrderHistoryState extends State<OrderHistory> {
                     fontSize: 16,
                     color: Color.fromRGBO(0, 0, 0, 1)),
               ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'See All',
-                  style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      color: Color.fromRGBO(0, 0, 0, .2)),
-                ),
-              )
             ],
           ),
         ),
-        const SizedBox(height: 26),
+        const SizedBox(height: 18),
         SizedBox(
-          height: 144,
+          height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: ListView.builder(
+          child: GridView.builder(
+            physics: const ScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            scrollDirection: Axis.horizontal,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, mainAxisSpacing: 16, crossAxisSpacing: 16),
             itemCount: orderHistoryPhoto.length,
             itemBuilder: (content, index) {
               return Container(
                 padding: const EdgeInsets.all(10),
-                width: MediaQuery.of(context).size.width * .3,
+                width: MediaQuery.of(context).size.width * .4,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     // ignore: unnecessary_string_interpolations
@@ -63,7 +54,6 @@ class _OrderHistoryState extends State<OrderHistory> {
                     color: const Color.fromRGBO(0, 0, 0, .1),
                   ),
                 ),
-                margin: const EdgeInsets.only(right: 14),
                 child: Row(
                   children: [
                     Flexible(
