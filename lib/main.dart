@@ -9,18 +9,18 @@ import 'firebase_options.dart';
 
 //CODE BLOCK BELOW WAS COMMENTED OUT TO BYPASS AUTHENTICATION
 
-// Future main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );
-//   runApp(const MyApp());
-// }
-
-// THE CODE ABOVE WAS REPLACED BY DEFAULT VOID MAIN FOR THE APP TO RUN
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
+
+// THE CODE ABOVE WAS REPLACED BY DEFAULT VOID MAIN FOR THE APP TO RUN
+// void main() {
+//   runApp(const MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -32,21 +32,20 @@ class MyApp extends StatelessWidget {
 
         // MULTIPROVIDER COMMENTED OUT.
 
-        // MultiProvider(
-        //   providers: [
-        //     ChangeNotifierProvider<Authprovider>(create: (_) => Authprovider())
-        //   ],
-        //   child:
+        MultiProvider(
+            providers: [
+          ChangeNotifierProvider<Authprovider>(create: (_) => Authprovider())
+        ],
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Sukify',
+              theme: ThemeData(
+                useMaterial3: true,
+              ),
+              home: SignInLogic(),
+            )
 
-        MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Sukify',
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
-      home: NavbarPageMainPage(),
-
-      // ), // MULTIPROVIDED ENCLOSER
-    );
+            // ), // MULTIPROVIDED ENCLOSER
+            );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:sukify/controller/services/auth_services/auth_services.dart';
 import 'package:sukify/view/login_screen/login_screen.dart';
+import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
 import 'package:sukify/view/user_screen/navbar_main.dart';
 import 'package:sukify/view/user_screen/pages/home_page/home_page.dart';
 
@@ -26,7 +27,8 @@ class _SignInLogicState extends State<SignInLogic> {
         : Navigator.pushAndRemoveUntil(
             context,
             PageTransition(
-                child: LoginScreen(), type: PageTransitionType.rightToLeft),
+                child: OnboardingScreen(),
+                type: PageTransitionType.rightToLeft),
             (route) => false,
           );
   }
