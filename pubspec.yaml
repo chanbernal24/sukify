@@ -49,6 +49,7 @@ dependencies:
   sticky_headers: ^0.3.0+2
   roundcheckbox: ^2.0.5
   cloud_firestore: ^4.15.8
+  uuid: ^4.4.0
 
 # flutter_native_splash:
 #   image: lib/assets/Sukify_logo.png

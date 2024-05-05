@@ -3,35 +3,32 @@ import 'dart:convert';
 class AddressModel {
   String? name;
   String? mobileNumber;
+  String? authenticatedMobileNumber;
   String? houseNumber;
-  String? area;
-  String? landmark;
   String? pincode;
-  String? town;
   String? city;
-  String? isDefault;
+  String? docID;
+  bool? isDefault;
 
   AddressModel(
       {this.name,
       this.mobileNumber,
+      this.authenticatedMobileNumber,
       this.houseNumber,
-      this.area,
-      this.landmark,
       this.pincode,
-      this.town,
       this.city,
+      this.docID,
       this.isDefault});
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'name': name,
       'mobileNumber': mobileNumber,
+      'authenticatedMobileNumber': authenticatedMobileNumber,
       'houseNumber': houseNumber,
-      'area': area,
-      'landmark': landmark,
       'pincode': pincode,
-      'town': town,
       'city': city,
+      'docID': docID,
       'isDefault': isDefault
     };
   }
@@ -42,12 +39,11 @@ class AddressModel {
     return AddressModel(
       name: map['name'],
       mobileNumber: map['mobileNumber'],
+      authenticatedMobileNumber: map['authenticatedMobileNumber'],
       houseNumber: map['houseNumber'],
-      area: map['area'],
-      landmark: map['landmark'],
       pincode: map['pincode'],
-      town: map['town'],
       city: map['city'],
+      docID: map['docID'],
       isDefault: map['isDefault'],
     );
   }

@@ -1,7 +1,12 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:sticky_headers/sticky_headers/widget.dart';
+import 'package:sukify/controller/provider/address_provider.dart';
+import 'package:sukify/controller/services/user_crud_services/user_crud_services.dart';
+import 'package:sukify/view/address_screen/address_screen.dart';
 import 'package:sukify/view/user_screen/pages/home_page/home_page%20widgets/home_best_selling.dart';
 import 'package:sukify/view/user_screen/pages/home_page/home_page%20widgets/home_carousel.dart';
 import 'package:sukify/view/user_screen/pages/home_page/home_page%20widgets/home_categories.dart';
@@ -16,6 +21,91 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  checkUsersAddress() async {
+    bool userAddressPresent = await UserDataCRUD.checkUsersAddress();
+    if (userAddressPresent == false) {
+      showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            padding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.height * .04,
+                horizontal: MediaQuery.of(context).size.width * .03),
+            height: MediaQuery.of(context).size.height * .3,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Add address"),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .15,
+                  child: ListView.builder(
+                    itemCount: 1,
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          if (index == 0) {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                  child: AddressScreen(),
+                                  type: PageTransitionType.rightToLeft),
+                            );
+                          }
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width * .4,
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * .03,
+                              vertical:
+                                  MediaQuery.of(context).size.height * .01),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.grey)),
+                          child: Builder(
+                            builder: (context) {
+                              if (index == 0) {
+                                return Text("Add Address");
+                              } else {
+                                return Text("Add Address");
+                              }
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      checkUsersAddress();
+      context.read<AddressProvider>().getCurrentSelectedAddress();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

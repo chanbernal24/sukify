@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sukify/controller/provider/address_provider.dart';
 import 'package:sukify/controller/provider/auth_provider/auth_provider.dart';
+import 'package:sukify/view/address_screen/address_screen.dart';
 import 'package:sukify/view/login_screen/signInLogic.dart';
 import 'package:sukify/view/user_data_screen/user_data_input_screen.dart';
 import 'package:sukify/view/user_screen/navbar_main.dart';
@@ -35,15 +37,18 @@ class MyApp extends StatelessWidget {
 
         MultiProvider(
             providers: [
-          ChangeNotifierProvider<Authprovider>(create: (_) => Authprovider())
+          ChangeNotifierProvider<Authprovider>(create: (_) => Authprovider()),
+          ChangeNotifierProvider<AddressProvider>(
+              create: (_) => AddressProvider()),
         ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Sukify',
               theme: ThemeData(
-                useMaterial3: true,
-              ),
-              home: SignInLogic(),
+                  useMaterial3: true,
+                  bottomSheetTheme:
+                      BottomSheetThemeData(backgroundColor: Colors.black54)),
+              home: NavbarPageMainPage(),
             )
 
             // ), // MULTIPROVIDED ENCLOSER
