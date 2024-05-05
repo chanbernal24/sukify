@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
                   useMaterial3: true,
                   bottomSheetTheme:
                       BottomSheetThemeData(backgroundColor: Colors.black54)),
-              home: NavbarPageMainPage(),
+              home: SignInLogic(),
             )
 
             // ), // MULTIPROVIDED ENCLOSER

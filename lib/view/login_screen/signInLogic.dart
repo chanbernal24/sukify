@@ -6,6 +6,7 @@ import 'package:sukify/controller/services/auth_services/auth_services.dart';
 import 'package:sukify/controller/services/user_crud_services/user_crud_services.dart';
 import 'package:sukify/view/login_screen/login_screen.dart';
 import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
+import 'package:sukify/view/signup_screen/signup_screen.dart';
 import 'package:sukify/view/user_data_screen/user_data_input_screen.dart';
 import 'package:sukify/view/user_screen/navbar_main.dart';
 import 'package:sukify/view/user_screen/pages/home_page/home_page.dart';

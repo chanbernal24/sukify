@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:sukify/constants/constants.dart';
+import 'package:sukify/view/login_screen/signInLogic.dart';
 
 class YourButtons extends StatefulWidget {
   const YourButtons({super.key});
@@ -23,7 +26,14 @@ class _YourButtonsState extends State<YourButtons> {
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14))),
           ),
-          onPressed: () {},
+          onPressed: () {
+            auth.signOut();
+            Navigator.pushAndRemoveUntil(
+                context,
+                PageTransition(
+                    child: SignInLogic(), type: PageTransitionType.rightToLeft),
+                (route) => false);
+          },
           icon: const Icon(Icons.person_outline,
               color: Color.fromRGBO(240, 240, 240, 1)),
           label: const Text(
