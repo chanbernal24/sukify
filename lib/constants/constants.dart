@@ -1,3 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+class CommonFunctions {}
+
+FirebaseAuth auth = FirebaseAuth.instance;
+FirebaseFirestore firestore = FirebaseFirestore.instance;
+
 List<String> categories = [
   'Dress',
   'Jeans',
@@ -118,3 +128,14 @@ List<String> orderHistoryProduct = [
   'T-shirt | Light Bulb',
   'Argentina Soccer Team T-shirt',
 ];
+
+dynamic showToast({required BuildContext context, required String message}) {
+  return Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.TOP,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.white,
+      textColor: Colors.black,
+      fontSize: 16);
+}

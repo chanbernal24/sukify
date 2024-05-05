@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sukify/controller/provider/auth_provider/auth_provider.dart';
 import 'package:sukify/view/login_screen/signInLogic.dart';
+import 'package:sukify/view/user_data_screen/user_data_input_screen.dart';
 import 'package:sukify/view/user_screen/navbar_main.dart';
 
 import 'firebase_options.dart';
