@@ -33,13 +33,14 @@ class UserDataCRUD {
   static Future<bool> checkUser() async {
     bool isUserPresent = false;
     try {
-      await firestore
+      final querySnapshot = await firestore
           .collection('users')
           .where('mobileNum', isEqualTo: auth.currentUser!.phoneNumber)
-          .get()
-          .then((value) {
-        value.size < 0 ? isUserPresent = true : isUserPresent = false;
-      });
+          .get();
+      isUserPresent = querySnapshot.size > 0;
+      //     .then((value) {
+      //   value.size < 0 ? isUserPresent = true : isUserPresent = false;
+      // });
     } catch (e) {
       log(e.toString());
     }
