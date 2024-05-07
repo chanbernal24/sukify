@@ -43,7 +43,8 @@ class _ProfileGreetingsState extends State<ProfileGreetings> {
           // ),
           Consumer<AddressProvider>(
             builder: (context, addressProvider, child) {
-              if (addressProvider.fetchedCurrentSelectedAddress == true) {
+              if (addressProvider.fetchedCurrentSelectedAddress == true &&
+                  addressProvider.addressPresent) {
                 AddressModel selectedAddress =
                     addressProvider.currentSelectedAddress;
                 return Row(

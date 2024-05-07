@@ -50,6 +50,8 @@ dependencies:
   roundcheckbox: ^2.0.5
   cloud_firestore: ^4.15.8
   uuid: ^4.4.0
+  image_picker: ^1.0.8
+  firebase_storage: ^11.6.9
 
 # flutter_native_splash:
 #   image: lib/assets/Sukify_logo.png
