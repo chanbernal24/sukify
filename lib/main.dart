@@ -49,9 +49,6 @@ class MyApp extends StatelessWidget {
                   bottomSheetTheme:
                       BottomSheetThemeData(backgroundColor: Colors.black54)),
               home: SignInLogic(),
-            )
-
-            // ), // MULTIPROVIDED ENCLOSER
-            );
+            ));
   }
 }

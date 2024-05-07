@@ -81,6 +81,7 @@ class _MyWidgetState extends State<LoginScreen> {
       controller: mobilerController,
       keyboardType: TextInputType.number,
       decoration: const InputDecoration(
+        isDense: true,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.horizontal(right: Radius.circular(10)),
           borderSide: BorderSide(
