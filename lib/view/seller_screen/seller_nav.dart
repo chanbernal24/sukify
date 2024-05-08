@@ -26,10 +26,12 @@ class _SellerNavBarState extends State<SellerNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[selectedIndex],
-      bottomNavigationBar: SellerNav(),
-      floatingActionButton: ExtendedFAB(),
+    return SafeArea(
+      child: Scaffold(
+        body: pages[selectedIndex],
+        bottomNavigationBar: SellerNav(),
+        floatingActionButton: ExtendedFAB(),
+      ),
     );
   }
 

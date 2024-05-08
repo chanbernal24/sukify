@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:sukify/constants/constants.dart';
+import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
 
 class SellerMenuScreen extends StatefulWidget {
   const SellerMenuScreen({super.key});
@@ -89,7 +92,15 @@ class _SellerMenuScreenState extends State<SellerMenuScreen> {
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(14))),
           ),
-          onPressed: () {},
+          onPressed: () {
+            auth.signOut();
+            Navigator.pushAndRemoveUntil(
+                context,
+                PageTransition(
+                    child: OnboardingScreen(),
+                    type: PageTransitionType.leftToRight),
+                (route) => false);
+          },
           icon: const Icon(Icons.person_outline,
               color: Color.fromRGBO(240, 240, 240, 1)),
           label: const Text(

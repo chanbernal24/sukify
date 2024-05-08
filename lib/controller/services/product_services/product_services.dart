@@ -45,7 +45,7 @@ class ProductServices {
       String imageURL = await ref.getDownloadURL();
       imagesURL.add(imageURL);
     });
-
+    log(imagesURL.toList().toString());
     context
         .read<SellerProductProvider>()
         .updateProductImagesURL(imageURLs: imagesURL);
@@ -62,7 +62,7 @@ class ProductServices {
           .set(productModel.toMap())
           .whenComplete(() {
         log('Data Added');
-        context.read<SellerProductProvider>().fecthSellerProducts();
+        // context.read<SellerProductProvider>().fecthSellerProducts();
         Navigator.pop(context);
 
         showToast(context: context, message: 'Product Added Successful');

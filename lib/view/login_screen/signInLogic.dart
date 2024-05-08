@@ -6,6 +6,7 @@ import 'package:sukify/controller/services/auth_services/auth_services.dart';
 import 'package:sukify/controller/services/user_crud_services/user_crud_services.dart';
 import 'package:sukify/view/login_screen/login_screen.dart';
 import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
+import 'package:sukify/view/seller_screen/seller_nav.dart';
 import 'package:sukify/view/signup_screen/signup_screen.dart';
 import 'package:sukify/view/user_data_screen/user_data_input_screen.dart';
 import 'package:sukify/view/user_screen/navbar_main.dart';
@@ -23,11 +24,21 @@ class _SignInLogicState extends State<SignInLogic> {
     bool userAlreadyThere = await UserDataCRUD.checkUser();
     log(userAlreadyThere.toString());
     if (userAlreadyThere == true) {
-      Navigator.pushReplacement(
-          context,
-          PageTransition(
-              child: NavbarPageMainPage(),
-              type: PageTransitionType.rightToLeft));
+      bool userIsSeller = await UserDataCRUD.userIsSeller();
+      log('start');
+      log(userIsSeller.toString());
+      if (userIsSeller == true) {
+        Navigator.pushReplacement(
+            context,
+            PageTransition(
+                child: SellerNavBar(), type: PageTransitionType.rightToLeft));
+      } else {
+        Navigator.pushReplacement(
+            context,
+            PageTransition(
+                child: NavbarPageMainPage(),
+                type: PageTransitionType.rightToLeft));
+      }
     } else if (userAlreadyThere == false) {
       Navigator.pushReplacement(
           context,

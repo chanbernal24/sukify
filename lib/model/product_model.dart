@@ -7,15 +7,11 @@ class ProductModel {
   final String? category;
   final String? description;
   final String? brandName;
-  final String? manufacturerName;
   final String? countryOfOrigin;
-  final String? specifications;
-  final double? price;
-  final double? discountedPrice;
+  final String? price;
   final String? productID;
   final String? productSellerID;
   final bool? inStock;
-  final int? discountPercentage;
   final DateTime? uploadedAt;
   ProductModel({
     this.imagesURL,
@@ -23,15 +19,11 @@ class ProductModel {
     this.category,
     this.description,
     this.brandName,
-    this.manufacturerName,
     this.countryOfOrigin,
-    this.specifications,
     this.price,
-    this.discountedPrice,
     this.productID,
     this.productSellerID,
     this.inStock,
-    this.discountPercentage,
     this.uploadedAt,
   });
 
@@ -42,15 +34,11 @@ class ProductModel {
       'category': category,
       'description': description,
       'brandName': brandName,
-      'manufacturerName': manufacturerName,
       'countryOfOrigin': countryOfOrigin,
-      'specifications': specifications,
       'price': price,
-      'discountedPrice': discountedPrice,
       'productID': productID,
       'productSellerID': productSellerID,
       'inStock': inStock,
-      'discountPercentage': discountPercentage,
       'uploadedAt': uploadedAt?.millisecondsSinceEpoch,
     };
   }
@@ -65,19 +53,10 @@ class ProductModel {
       description:
           map['description'] != null ? map['description'] as String : null,
       brandName: map['brandName'] != null ? map['brandName'] as String : null,
-      manufacturerName: map['manufacturerName'] != null
-          ? map['manufacturerName'] as String
-          : null,
       countryOfOrigin: map['countryOfOrigin'] != null
           ? map['countryOfOrigin'] as String
           : null,
-      specifications: map['specifications'] != null
-          ? map['specifications'] as String
-          : null,
-      price: map['price'] != null ? map['price'] as double : null,
-      discountedPrice: map['discountedPrice'] != null
-          ? map['discountedPrice'] as double
-          : null,
+      price: map['price'] != null ? map['price'] as String : null,
       productID: map['productID'] != null ? map['productID'] as String : null,
       productSellerID: map['productSellerID'] != null
           ? map['productSellerID'] as String
@@ -85,9 +64,6 @@ class ProductModel {
       inStock: map['inStock'] != null ? map['inStock'] as bool : null,
       uploadedAt: map['uploadedAt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['uploadedAt'] as int)
-          : null,
-      discountPercentage: map['discountPercentage'] != null
-          ? map['discountPercentage'] as int
           : null,
     );
   }
