@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sukify/constants/constants.dart';
+import 'package:sukify/view/seller_screen/seller_pages/seller_home/seller_home_upload.dart';
 
 class SellerHomeScreen extends StatefulWidget {
   const SellerHomeScreen({super.key});
@@ -121,7 +122,10 @@ class _SellerHomeScreenState extends State<SellerHomeScreen> {
       child: FloatingActionButton.extended(
         elevation: 1,
         clipBehavior: Clip.antiAlias,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SellerUpload()));
+        },
         backgroundColor: Color.fromRGBO(69, 137, 216, 1),
         label: const Text(
           'Add',

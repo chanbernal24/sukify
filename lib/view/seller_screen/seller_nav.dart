@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sukify/view/seller_screen/seller_pages/seller_home.dart';
+import 'package:sukify/view/seller_screen/seller_pages/seller_home/seller_home.dart';
 import 'package:sukify/view/seller_screen/seller_pages/seller_menu.dart';
 
 class SellerNavBar extends StatefulWidget {
