@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:sukify/constants/constants.dart';
+import 'package:sukify/controller/provider/product_provider/product_provider.dart';
 import 'package:sukify/view/seller_screen/seller_nav.dart';
-import 'package:sukify/view/seller_screen/seller_pages/seller_home/seller_home.dart';
 
 class SellerUpload extends StatefulWidget {
   const SellerUpload({super.key});
@@ -12,6 +14,18 @@ class SellerUpload extends StatefulWidget {
 }
 
 class _SellerUploadState extends State<SellerUpload> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController categoryController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController brandNameController = TextEditingController();
+  TextEditingController manufacturerNameController = TextEditingController();
+  TextEditingController countryOfOriginController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController iscountedPriceController = TextEditingController();
+  TextEditingController productIDController = TextEditingController();
+  TextEditingController productSellerIDController = TextEditingController();
+  TextEditingController discountPercentageController = TextEditingController();
+
   String dropdownvalue = 'Dress';
 
   final chosenCategory = [
@@ -28,7 +42,45 @@ class _SellerUploadState extends State<SellerUpload> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            UploadProductImage(context),
+            Consumer<SellerProductProvider>(
+              builder: (context, sellerProductProvider, child) {
+                return Builder(builder: (context) {
+                  if (sellerProductProvider.productImages.isEmpty) {
+                    return uploadProductImage(context);
+                  } else {
+                    List<File> images =
+                        context.read<SellerProductProvider>().productImages;
+                    return SizedBox(
+                      height: MediaQuery.of(context).size.height * .5,
+                      width: MediaQuery.of(context).size.width,
+                      child: ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: images.length,
+                        itemBuilder: (content, index) {
+                          return Builder(
+                            builder: (context) {
+                              return Container(
+                                padding: const EdgeInsets.all(10),
+                                width: MediaQuery.of(context).size.width * .52,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: FileImage(images[index]),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                margin: const EdgeInsets.only(right: 8),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    );
+                  }
+                });
+              },
+            ),
             const SizedBox(height: 18),
             ProductNameField(),
             ChooseProductCategory(context),
@@ -362,25 +414,32 @@ class _SellerUploadState extends State<SellerUpload> {
     );
   }
 
-  Widget UploadProductImage(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 358,
-      decoration:
-          BoxDecoration(border: Border.all(color: Color.fromRGBO(0, 0, 0, .1))),
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(Icons.add, size: 40, color: Color.fromRGBO(0, 0, 0, .5)),
-          SizedBox(height: 5),
-          Text('Upload Photo',
-              style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  color: Color.fromRGBO(0, 0, 0, .5))),
-        ],
+  Widget uploadProductImage(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        context
+            .read<SellerProductProvider>()
+            .fetchProductImagesFromGallery(context: context);
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 358,
+        decoration: BoxDecoration(
+            border: Border.all(color: Color.fromRGBO(0, 0, 0, .1))),
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.add, size: 40, color: Color.fromRGBO(0, 0, 0, .5)),
+            SizedBox(height: 5),
+            Text('Upload Photo',
+                style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                    color: Color.fromRGBO(0, 0, 0, .5))),
+          ],
+        ),
       ),
     );
   }

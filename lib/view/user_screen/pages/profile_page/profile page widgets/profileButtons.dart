@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:sukify/constants/constants.dart';
 import 'package:sukify/view/login_screen/signInLogic.dart';
+import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
 
 class YourButtons extends StatefulWidget {
   const YourButtons({super.key});
@@ -31,7 +32,8 @@ class _YourButtonsState extends State<YourButtons> {
             Navigator.pushAndRemoveUntil(
                 context,
                 PageTransition(
-                    child: SignInLogic(), type: PageTransitionType.rightToLeft),
+                    child: OnboardingScreen(),
+                    type: PageTransitionType.rightToLeft),
                 (route) => false);
           },
           icon: const Icon(Icons.person_outline,

@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sukify/controller/provider/address_provider.dart';
 import 'package:sukify/controller/provider/auth_provider/auth_provider.dart';
+import 'package:sukify/controller/provider/product_provider/product_provider.dart';
 import 'package:sukify/view/address_screen/address_screen.dart';
 import 'package:sukify/view/login_screen/signInLogic.dart';
+import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
+import 'package:sukify/view/seller_screen/seller_nav.dart';
 import 'package:sukify/view/user_data_screen/user_data_input_screen.dart';
 import 'package:sukify/view/user_screen/navbar_main.dart';
 
@@ -40,6 +43,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<Authprovider>(create: (_) => Authprovider()),
           ChangeNotifierProvider<AddressProvider>(
               create: (_) => AddressProvider()),
+          ChangeNotifierProvider<SellerProductProvider>(
+              create: (_) => SellerProductProvider()),
         ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
@@ -48,7 +53,7 @@ class MyApp extends StatelessWidget {
                   useMaterial3: true,
                   bottomSheetTheme:
                       BottomSheetThemeData(backgroundColor: Colors.black54)),
-              home: SignInLogic(),
+              home: SellerNavBar(),
             ));
   }
 }

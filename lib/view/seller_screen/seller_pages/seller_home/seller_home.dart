@@ -22,7 +22,7 @@ class _SellerHomeScreenState extends State<SellerHomeScreen> {
           ],
         ),
       ),
-      floatingActionButton: ExtendedFAB(),
+      // floatingActionButton: ExtendedFAB(),
     );
   }
 
@@ -110,34 +110,34 @@ class _SellerHomeScreenState extends State<SellerHomeScreen> {
     );
   }
 
-  Widget ExtendedFAB() {
-    return Container(
-      margin: EdgeInsets.only(bottom: 20),
-      height: 65,
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color.fromRGBO(0, 0, 0, .1)),
-      ),
-      child: FloatingActionButton.extended(
-        elevation: 1,
-        clipBehavior: Clip.antiAlias,
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SellerUpload()));
-        },
-        backgroundColor: Color.fromRGBO(69, 137, 216, 1),
-        label: const Text(
-          'Add',
-          style: TextStyle(
-            fontFamily: 'Inter',
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Color.fromRGBO(255, 255, 255, 1),
-          ),
-        ),
-        icon: Icon(Icons.add_sharp, color: Color.fromRGBO(255, 255, 255, 1)),
-      ),
-    );
-  }
+  // Widget ExtendedFAB() {
+  //   return Container(
+  //     margin: EdgeInsets.only(bottom: 20),
+  //     height: 65,
+  //     clipBehavior: Clip.antiAlias,
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(16),
+  //       border: Border.all(color: const Color.fromRGBO(0, 0, 0, .1)),
+  //     ),
+  //     child: FloatingActionButton.extended(
+  //       elevation: 1,
+  //       clipBehavior: Clip.antiAlias,
+  //       onPressed: () {
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => SellerUpload()));
+  //       },
+  //       backgroundColor: Color.fromRGBO(69, 137, 216, 1),
+  //       label: const Text(
+  //         'Add',
+  //         style: TextStyle(
+  //           fontFamily: 'Inter',
+  //           fontSize: 16,
+  //           fontWeight: FontWeight.w600,
+  //           color: Color.fromRGBO(255, 255, 255, 1),
+  //         ),
+  //       ),
+  //       icon: Icon(Icons.add_sharp, color: Color.fromRGBO(255, 255, 255, 1)),
+  //     ),
+  //   );
+  // }
 }
