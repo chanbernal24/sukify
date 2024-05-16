@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sukify/constants/constants.dart';
 import 'package:sukify/model/product_model.dart';
 import 'package:sukify/model/user_product_model.dart';
+import 'package:uuid/uuid.dart';
 
 class UsersProductService {
   static Future<List<ProductModel>> getProducts(String name) async {
@@ -135,4 +136,64 @@ class UsersProductService {
     log(sellersProducts.toList().toString());
     return sellersProducts;
   }
+
+  static Future addOrder({
+    required BuildContext context,
+    required UserProductModel productModel,
+  }) async {
+    try {
+      Uuid uuid = Uuid();
+      await firestore
+          .collection('Orders')
+          .doc(auth.currentUser!.phoneNumber)
+          .collection('myOrders')
+          .doc(productModel.productID! + uuid.v1())
+          .set(productModel.toMap())
+          .whenComplete(() {
+        log('Data Added');
+
+        showToast(context: context, message: 'Product Ordered Successful');
+      });
+    } catch (e) {
+      log(e.toString());
+      showToast(context: context, message: e.toString());
+    }
+  }
+
+  static Future fetchCart() async {
+    List<UserProductModel> sellersProducts = [];
+    try {
+      final QuerySnapshot<Map<String, dynamic>> snapshot = await firestore
+          .collection('Cart')
+          .doc(auth.currentUser!.phoneNumber)
+          .collection('myCart')
+          .get();
+      snapshot.docs.forEach((element) {
+        sellersProducts.add(UserProductModel.fromMap(element.data()));
+      });
+      log(sellersProducts.toList().toString());
+    } catch (e) {
+      log('error Found');
+      log(e.toString());
+    }
+    log(sellersProducts.toList().toString());
+    log(sellersProducts.toList().toString());
+    return sellersProducts;
+  }
+
+  static Stream<List<UserProductModel>> fetchOrders() => firestore
+      .collection('Orders')
+      .doc(auth.currentUser!.phoneNumber)
+      .collection('myOrders')
+      .snapshots()
+      .map((snapshot) => snapshot.docs.map((doc) {
+            return UserProductModel.fromMap(doc.data());
+          }).toList());
+
+  static Stream<List<UserProductModel>> fetchAllOrders() => firestore
+      .collectionGroup('myOrders')
+      .snapshots()
+      .map((snapshot) => snapshot.docs.map((doc) {
+            return UserProductModel.fromMap(doc.data());
+          }).toList());
 }

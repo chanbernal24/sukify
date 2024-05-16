@@ -1,15 +1,42 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
+import 'package:sukify/constants/constants.dart';
+import 'package:sukify/controller/provider/users_product_provider/users_product_provider.dart';
 import 'package:sukify/controller/services/user_product_services/user_product_services.dart';
+import 'package:sukify/model/product_model.dart';
 import 'package:sukify/model/user_product_model.dart';
+import 'package:sukify/view/user_screen/navbar_main.dart';
 
 class CartCheckout extends StatefulWidget {
-  const CartCheckout({super.key});
+  ProductModel? productModel;
+
+  CartCheckout({super.key, this.productModel});
 
   @override
   State<CartCheckout> createState() => _CartCheckoutState();
 }
 
 class _CartCheckoutState extends State<CartCheckout> {
+  Future<void> processOrder(BuildContext context) async {
+    final cartItems = await UsersProductService.fetchCart();
+    for (var product in cartItems) {
+      final model = UserProductModel(
+        imagesURL: product.imagesURL,
+        name: product.name,
+        category: product.category,
+        description: product.description,
+        brandName: product.brandName,
+        countryOfOrigin: product.countryOfOrigin,
+        price: product.price,
+        productID: product.productID,
+        productSellerID: product.productSellerID,
+      );
+      await UsersProductService.addOrder(context: context, productModel: model);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -21,7 +48,7 @@ class _CartCheckoutState extends State<CartCheckout> {
         if (snapshot.data!.isEmpty) {
           return Center(
             child: Text(
-              'Opps! No Product Added To Cart',
+              'Oops! No Product Added To Cart',
             ),
           );
         }
@@ -81,7 +108,25 @@ class _CartCheckoutState extends State<CartCheckout> {
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(14))),
                         ),
-                        onPressed: () {},
+                        onPressed: () async {
+                          await processOrder(context);
+                          final userPhone = auth.currentUser!.phoneNumber;
+                          final userDocPath = 'Cart/$userPhone';
+                          final userDocRef = firestore.doc(userDocPath);
+                          userDocRef
+                              .collection('myCart')
+                              .get()
+                              .then((querySnapshot) {
+                            querySnapshot.docs.forEach((doc) {
+                              doc.reference.delete();
+                            });
+                          });
+                          Navigator.push(
+                              context,
+                              PageTransition(
+                                  child: NavbarPageMainPage(),
+                                  type: PageTransitionType.rightToLeft));
+                        },
                         child: const Text(
                           'Checkout',
                           style: TextStyle(

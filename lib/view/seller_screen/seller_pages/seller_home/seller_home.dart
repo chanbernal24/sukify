@@ -40,6 +40,7 @@ class _SellerHomeScreenState extends State<SellerHomeScreen> {
             // SellerProfileDisplay(),
             const SizedBox(height: 25),
             SellerProductList(context),
+            const SizedBox(height: 25),
           ],
         ),
       ),
@@ -105,11 +106,11 @@ class _SellerHomeScreenState extends State<SellerHomeScreen> {
           );
         }
         return SizedBox(
-          height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: GridView.builder(
             itemCount: sellerProductProvider.products.length,
-            physics: const ScrollPhysics(),
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 20),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, mainAxisSpacing: 16, crossAxisSpacing: 16),

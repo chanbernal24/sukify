@@ -300,6 +300,7 @@ class _ProductScreenDisplayState extends State<ProductScreenDisplay> {
                     );
                     await UsersProductService.addProductToCart(
                         context: context, productModel: model);
+                    Navigator.pop(context);
                   },
                   child: const Text(
                     'Add to Cart',

@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                     NewArrivalText(),
                     const SizedBox(height: 20),
                     productsList(context),
-                    const SizedBox(height: 20)
+                    const SizedBox(height: 20),
                   ], //children
                 ),
               ),
@@ -178,37 +178,6 @@ class _HomePageState extends State<HomePage> {
     );
   } //NewArrivalText
 
-  Widget BestSellingText() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Text(
-            'Best Selling',
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Inter',
-                color: Color.fromRGBO(0, 0, 0, 1)),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              'See All',
-              style: TextStyle(
-                color: Color.fromRGBO(0, 0, 0, .2),
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Inter',
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget productsList(BuildContext context) {
     final sellersProductProvider = Provider.of<SellerProductProvider>(context);
     return Consumer<SellerProductProvider>(
@@ -217,10 +186,10 @@ class _HomePageState extends State<HomePage> {
         return Text("Error fetching products");
       } else {
         if (sellerProductProvider.userProductsFetched) {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height,
+          return Container(
             width: MediaQuery.of(context).size.width,
             child: GridView.builder(
+              shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

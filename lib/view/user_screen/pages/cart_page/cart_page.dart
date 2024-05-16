@@ -40,7 +40,7 @@ class CartPageState extends State<CartPage> {
             ],
           ),
         ),
-        bottomNavigationBar: const CartCheckout(),
+        bottomNavigationBar: CartCheckout(),
       ),
     );
   }
