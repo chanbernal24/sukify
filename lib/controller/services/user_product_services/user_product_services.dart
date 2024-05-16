@@ -116,4 +116,23 @@ class UsersProductService {
       showToast(context: context, message: e.toString());
     }
   }
+
+  static Future fetchProductBasedOnCategory({required String category}) async {
+    List<ProductModel> sellersProducts = [];
+    try {
+      final QuerySnapshot<Map<String, dynamic>> snapshot = await firestore
+          .collection('Products')
+          .where('category', isEqualTo: category)
+          .get();
+      snapshot.docs.forEach((element) {
+        sellersProducts.add(ProductModel.fromMap(element.data()));
+      });
+      log(sellersProducts.toList().toString());
+    } catch (e) {
+      log('error Found');
+      log(e.toString());
+    }
+    log(sellersProducts.toList().toString());
+    return sellersProducts;
+  }
 }

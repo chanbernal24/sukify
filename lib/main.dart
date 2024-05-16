@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sukify/controller/provider/address_provider.dart';
 import 'package:sukify/controller/provider/auth_provider/auth_provider.dart';
+import 'package:sukify/controller/provider/product_category_provider/product_category.dart';
 import 'package:sukify/controller/provider/product_provider/product_provider.dart';
 import 'package:sukify/controller/provider/users_product_provider/users_product_provider.dart';
 import 'package:sukify/view/address_screen/address_screen.dart';
@@ -48,6 +49,8 @@ class MyApp extends StatelessWidget {
               create: (_) => SellerProductProvider()),
           ChangeNotifierProvider<UsersProductProvider>(
               create: (_) => UsersProductProvider()),
+          ChangeNotifierProvider<ProductBasedOnCategoryProvider>(
+              create: (_) => ProductBasedOnCategoryProvider()),
         ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,

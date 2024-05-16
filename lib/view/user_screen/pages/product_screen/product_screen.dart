@@ -26,7 +26,6 @@ class _ProductScreenDisplayState extends State<ProductScreenDisplay> {
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -34,6 +33,7 @@ class _ProductScreenDisplayState extends State<ProductScreenDisplay> {
                 const SizedBox(height: 10),
                 ProductScreenName(),
                 ProductScreenInfos(),
+                const SizedBox(height: 20),
               ],
             ),
           ),
@@ -79,51 +79,51 @@ class _ProductScreenDisplayState extends State<ProductScreenDisplay> {
                     fontSize: 12,
                     color: Color.fromRGBO(0, 0, 0, .5)),
               ),
-              Row(
-                children: [
-                  const Text(
-                    'Qty:',
-                    style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 12,
-                        color: Color.fromRGBO(0, 0, 0, 1)),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(240, 240, 240, 1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: IconButton(
-                        icon: Image.asset('lib/assets/add.png'),
-                        onPressed: () {},
-                      )),
-                  const SizedBox(width: 8),
-                  const Text(
-                    '0',
-                    style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 12,
-                        color: Color.fromRGBO(0, 0, 0, 1)),
-                  ),
-                  SizedBox(width: 8),
-                  Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(240, 240, 240, 1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: IconButton(
-                        icon: Image.asset('lib/assets/minus.png'),
-                        onPressed: () {},
-                      )),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     const Text(
+              //       'Qty:',
+              //       style: TextStyle(
+              //           fontFamily: 'Inter',
+              //           fontSize: 12,
+              //           color: Color.fromRGBO(0, 0, 0, 1)),
+              //     ),
+              //     const SizedBox(
+              //       width: 12,
+              //     ),
+              //     Container(
+              //         width: 30,
+              //         height: 30,
+              //         decoration: BoxDecoration(
+              //           color: const Color.fromRGBO(240, 240, 240, 1),
+              //           borderRadius: BorderRadius.circular(10),
+              //         ),
+              //         child: IconButton(
+              //           icon: Image.asset('lib/assets/add.png'),
+              //           onPressed: () {},
+              //         )),
+              //     const SizedBox(width: 8),
+              //     const Text(
+              //       '0',
+              //       style: TextStyle(
+              //           fontFamily: 'Inter',
+              //           fontSize: 12,
+              //           color: Color.fromRGBO(0, 0, 0, 1)),
+              //     ),
+              //     SizedBox(width: 8),
+              //     Container(
+              //         width: 30,
+              //         height: 30,
+              //         decoration: BoxDecoration(
+              //           color: const Color.fromRGBO(240, 240, 240, 1),
+              //           borderRadius: BorderRadius.circular(10),
+              //         ),
+              //         child: IconButton(
+              //           icon: Image.asset('lib/assets/minus.png'),
+              //           onPressed: () {},
+              //         )),
+              //   ],
+              // ),
             ],
           ),
           const SizedBox(
