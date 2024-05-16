@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:sukify/constants/constants.dart';
+import 'package:sukify/controller/provider/address_provider.dart';
+import 'package:sukify/model/address_model.dart';
 import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
 
 class SellerMenuScreen extends StatefulWidget {
@@ -12,15 +15,24 @@ class SellerMenuScreen extends StatefulWidget {
 
 class _SellerMenuScreenState extends State<SellerMenuScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<AddressProvider>().getCurrentSelectedAddress();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 32),
+          const SizedBox(height: 80),
           SellerMenuGreet(),
-          const SizedBox(height: 50),
-          SellerAboutBtn(context),
-          const SizedBox(height: 135),
+          const SizedBox(height: 30),
+          // // SellerAboutBtn(context),
+          // const SizedBox(height: 135),
           SellerLogoutBtn(context),
         ],
       ),
@@ -28,21 +40,27 @@ class _SellerMenuScreenState extends State<SellerMenuScreen> {
   }
 
   Widget SellerMenuGreet() {
-    return const Center(
-      child: Column(
-        children: [
-          CircleAvatar(
-              radius: 27, backgroundImage: AssetImage('lib/assets/miles.jpg')),
-          SizedBox(height: 12),
-          Text(
-            'Felicorps',
-            style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 16,
-                color: Color.fromRGBO(0, 0, 0, .5)),
+    return Consumer<AddressProvider>(
+      builder: (context, value, child) {
+        AddressModel selectedAddress = value.currentSelectedAddress;
+        return Center(
+          child: Column(
+            children: [
+              CircleAvatar(
+                  radius: 27,
+                  backgroundImage: AssetImage('lib/assets/miles.jpg')),
+              SizedBox(height: 12),
+              Text(
+                'Hello, ${selectedAddress.name}!' ?? "",
+                style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: 16,
+                    color: Color.fromRGBO(0, 0, 0, .5)),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 

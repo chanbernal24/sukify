@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sukify/controller/provider/address_provider.dart';
 import 'package:sukify/controller/provider/auth_provider/auth_provider.dart';
 import 'package:sukify/controller/provider/product_provider/product_provider.dart';
+import 'package:sukify/controller/provider/users_product_provider/users_product_provider.dart';
 import 'package:sukify/view/address_screen/address_screen.dart';
 import 'package:sukify/view/login_screen/signInLogic.dart';
 import 'package:sukify/view/onboardingScreen/onboard_screen.dart';
@@ -45,6 +46,8 @@ class MyApp extends StatelessWidget {
               create: (_) => AddressProvider()),
           ChangeNotifierProvider<SellerProductProvider>(
               create: (_) => SellerProductProvider()),
+          ChangeNotifierProvider<UsersProductProvider>(
+              create: (_) => UsersProductProvider()),
         ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
@@ -53,7 +56,7 @@ class MyApp extends StatelessWidget {
                   useMaterial3: true,
                   bottomSheetTheme:
                       BottomSheetThemeData(backgroundColor: Colors.black54)),
-              home: SellerNavBar(),
+              home: SignInLogic(),
             ));
   }
 }

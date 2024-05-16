@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sukify/constants/constants.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
+import 'package:sukify/model/user_product_model.dart';
 
 class ItemCart extends StatefulWidget {
   const ItemCart({super.key});

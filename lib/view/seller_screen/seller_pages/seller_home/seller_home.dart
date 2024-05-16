@@ -29,10 +29,15 @@ class _SellerHomeScreenState extends State<SellerHomeScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: Text("Inventory"),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SellerProfileDisplay(),
+            // SellerProfileDisplay(),
             const SizedBox(height: 25),
             SellerProductList(context),
           ],
@@ -48,16 +53,19 @@ class _SellerHomeScreenState extends State<SellerHomeScreen> {
       if (addressProvider.fetchedCurrentSelectedAddress == true &&
           addressProvider.addressPresent) {
         AddressModel selectedAddress = addressProvider.currentSelectedAddress;
-        return Row(children: [
-          Text(
-            'Hello, ${selectedAddress.name!}!',
-            style: TextStyle(
-                fontFamily: 'Inter',
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: Color.fromRGBO(0, 0, 0, 1)),
-          ),
-        ]);
+        return Container(
+          margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+          child: Row(children: [
+            Text(
+              'Hello, ${selectedAddress.name!}!',
+              style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Color.fromRGBO(0, 0, 0, 1)),
+            ),
+          ]),
+        );
       } else {
         return Text(
           "Hello",
@@ -107,50 +115,75 @@ class _SellerHomeScreenState extends State<SellerHomeScreen> {
                 crossAxisCount: 2, mainAxisSpacing: 16, crossAxisSpacing: 16),
             itemBuilder: (context, index) {
               ProductModel currentModel = sellerProductProvider.products[index];
-              return Container(
-                padding: const EdgeInsets.all(10),
-                width: MediaQuery.of(context).size.width * .4,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    // ignore: unnecessary_string_interpolations
-                    image: NetworkImage(currentModel.imagesURL![0]),
-                    fit: BoxFit.cover,
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(
-                    color: const Color.fromRGBO(0, 0, 0, .1),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            overflow: TextOverflow.ellipsis,
-                            currentModel.name!,
-                            style: const TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: 12,
-                              color: Color.fromRGBO(0, 0, 0, 1),
-                            ),
-                          ),
-                          Text(
-                            '₱${currentModel.price!}',
-                            style: const TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w300,
-                              fontSize: 10,
-                              color: Color.fromRGBO(0, 0, 0, 1),
-                            ),
-                          )
-                        ],
+              return Stack(
+                children: [
+                  Container(
+                    clipBehavior: Clip.antiAlias,
+                    width: MediaQuery.of(context).size.width * .5,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(currentModel.imagesURL![0]),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(
+                        color: const Color.fromRGBO(0, 0, 0, .1),
                       ),
                     ),
-                  ],
-                ),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              colors: [
+                            Color.fromRGBO(0, 0, 0, .6),
+                            Color.fromRGBO(0, 0, 0, .5),
+                            Color.fromRGBO(0, 0, 0, .4),
+                            Color.fromRGBO(0, 0, 0, .3),
+                            Color.fromRGBO(0, 0, 0, .2),
+                            Color.fromRGBO(0, 0, 0, .1),
+                            Color.fromRGBO(0, 0, 0, 0),
+                            Color.fromRGBO(0, 0, 0, 0),
+                            Color.fromRGBO(0, 0, 0, 0),
+                          ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter)),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(15),
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                overflow: TextOverflow.ellipsis,
+                                currentModel.name!,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Inter',
+                                  fontSize: 16,
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                ),
+                              ),
+                              SizedBox(height: 2),
+                              Text(
+                                '₱${currentModel.price!}',
+                                style: const TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 12,
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               );
             },
           ),

@@ -62,7 +62,7 @@ class ProductServices {
           .set(productModel.toMap())
           .whenComplete(() {
         log('Data Added');
-        // context.read<SellerProductProvider>().fecthSellerProducts();
+        context.read<SellerProductProvider>().fecthSellerProducts();
         Navigator.pop(context);
 
         showToast(context: context, message: 'Product Added Successful');
@@ -81,6 +81,28 @@ class ProductServices {
           .collection('Products')
           .orderBy('uploadedAt', descending: true)
           .where('productSellerID', isEqualTo: auth.currentUser!.phoneNumber)
+          .get();
+
+      snapshot.docs.forEach((element) {
+        sellersProducts.add(ProductModel.fromMap(element.data()));
+      });
+      log(sellersProducts.toList().toString());
+    } catch (e) {
+      log('error Found');
+      log(e.toString());
+    }
+    log(sellersProducts.toList().toString());
+    return sellersProducts;
+  }
+
+  static Future<List<ProductModel>> getSellersProductsToUser() async {
+    List<ProductModel> sellersProducts = [];
+
+    try {
+      final QuerySnapshot<Map<String, dynamic>> snapshot = await firestore
+          .collection('Products')
+          .orderBy('uploadedAt', descending: true)
+          .where('productSellerID', isEqualTo: "+639638527411")
           .get();
 
       snapshot.docs.forEach((element) {

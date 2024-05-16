@@ -30,7 +30,7 @@ class _SellerNavBarState extends State<SellerNavBar> {
       child: Scaffold(
         body: pages[selectedIndex],
         bottomNavigationBar: SellerNav(),
-        floatingActionButton: ExtendedFAB(),
+        floatingActionButton: (selectedIndex == 0) ? ExtendedFAB() : Text(""),
       ),
     );
   }

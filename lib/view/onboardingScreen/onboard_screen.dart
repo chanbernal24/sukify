@@ -75,6 +75,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget pageIndicator() {
     return Container(
       alignment: const Alignment(0, 0.6),
+      margin: EdgeInsets.only(top: 270),
       child: SmoothPageIndicator(
         effect: const ExpandingDotsEffect(
           spacing: 6,

@@ -1,17 +1,24 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:sticky_headers/sticky_headers/widget.dart';
+import 'package:sukify/constants/constants.dart';
 import 'package:sukify/controller/provider/address_provider.dart';
+import 'package:sukify/controller/provider/product_provider/product_provider.dart';
+import 'package:sukify/controller/provider/users_product_provider/users_product_provider.dart';
 import 'package:sukify/controller/services/user_crud_services/user_crud_services.dart';
+import 'package:sukify/model/product_model.dart';
 import 'package:sukify/view/address_screen/address_screen.dart';
 import 'package:sukify/view/user_screen/pages/home_page/home_page%20widgets/home_best_selling.dart';
 import 'package:sukify/view/user_screen/pages/home_page/home_page%20widgets/home_carousel.dart';
 import 'package:sukify/view/user_screen/pages/home_page/home_page%20widgets/home_categories.dart';
-import 'package:sukify/view/user_screen/pages/home_page/home_page%20widgets/home_new_arrival.dart';
+
 import 'package:sukify/view/user_screen/pages/home_page/home_page%20widgets/home_search_bar.dart';
+import 'package:sukify/view/user_screen/pages/product_screen/product_screen.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -102,7 +109,10 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       checkUsersAddress();
+      context.read<SellerProductProvider>().fecthSellerProductsToUser();
+
       context.read<AddressProvider>().getCurrentSelectedAddress();
+      context.read<UsersProductProvider>();
     });
   }
 
@@ -113,14 +123,13 @@ class _HomePageState extends State<HomePage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 20),
               StickyHeader(
                 header: SearchBarConfig(),
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 20),
-                    Carousel(),
-                    const SizedBox(height: 34),
                     const Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Text(
@@ -137,12 +146,8 @@ class _HomePageState extends State<HomePage> {
                     Categories(),
                     const SizedBox(height: 22),
                     NewArrivalText(),
-                    const SizedBox(height: 26),
-                    NewArrival(),
-                    const SizedBox(height: 30),
-                    BestSellingText(),
-                    const SizedBox(height: 26),
-                    BestSelling(),
+                    const SizedBox(height: 20),
+                    productsList(context),
                     const SizedBox(height: 20)
                   ], //children
                 ),
@@ -161,24 +166,12 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(
-            'New Arrival',
+            'Clothes',
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Inter',
                 color: Color.fromRGBO(0, 0, 0, 1)),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: const Text(
-              'See All',
-              style: TextStyle(
-                color: Color.fromRGBO(0, 0, 0, .2),
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Inter',
-              ),
-            ),
           ),
         ],
       ),
@@ -214,5 +207,117 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  } //BestSellingText
+  }
+
+  Widget productsList(BuildContext context) {
+    final sellersProductProvider = Provider.of<SellerProductProvider>(context);
+    return Consumer<SellerProductProvider>(
+        builder: (context, sellerProductProvider, child) {
+      if (sellerProductProvider.userProductsFetched == false) {
+        return Text("Error fetching products");
+      } else {
+        if (sellerProductProvider.userProductsFetched) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: GridView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              scrollDirection: Axis.vertical,
+              itemCount: sellersProductProvider.userProducts.length,
+              itemBuilder: (content, index) {
+                ProductModel currentProduct =
+                    sellersProductProvider.userProducts[index];
+                log(currentProduct.toString());
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductScreenDisplay(
+                              productModel: currentProduct),
+                        ));
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    width: MediaQuery.of(context).size.width * .30,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(currentProduct.imagesURL![0]),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(
+                        color: const Color.fromRGBO(0, 0, 0, .1),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                overflow: TextOverflow.ellipsis,
+                                currentProduct.name!,
+                                style: const TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 12,
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                ),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    overflow: TextOverflow.ellipsis,
+                                    '\₱${currentProduct.price!}',
+                                    style: const TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 10,
+                                      color: Color.fromRGBO(240, 240, 240, 1),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  const Icon(
+                                    Icons.star_border_outlined,
+                                    color: Color.fromRGBO(240, 240, 240, 1),
+                                    size: 16,
+                                  ),
+                                  const SizedBox(width: 2),
+                                  // Text(
+                                  //   bestSellingRatings[index],
+                                  //   style: const TextStyle(
+                                  //     fontFamily: 'Inter',
+                                  //     fontSize: 12,
+                                  //     color: Color.fromRGBO(255, 255, 255, 1),
+                                  //   ),
+                                  // ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        } else {
+          return CircularProgressIndicator();
+        }
+      }
+    });
+  }
 }

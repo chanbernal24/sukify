@@ -8,7 +8,9 @@ class SellerProductProvider extends ChangeNotifier {
   List<File> productImages = [];
   List<String> productImagesURL = [];
   List<ProductModel> products = [];
+  List<ProductModel> userProducts = [];
   bool sellerProductsFetched = false;
+  bool userProductsFetched = false;
 
   fetchProductImagesFromGallery({required BuildContext context}) async {
     productImages = await ProductServices.getImages(context: context);
@@ -29,6 +31,12 @@ class SellerProductProvider extends ChangeNotifier {
   fecthSellerProducts() async {
     products = await ProductServices.getSellersProducts();
     sellerProductsFetched = true;
+    notifyListeners();
+  }
+
+  fecthSellerProductsToUser() async {
+    userProducts = await ProductServices.getSellersProductsToUser();
+    userProductsFetched = true;
     notifyListeners();
   }
 

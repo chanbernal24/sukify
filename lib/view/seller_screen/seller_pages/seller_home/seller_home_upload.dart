@@ -83,93 +83,92 @@ class _SellerUploadState extends State<SellerUpload> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Consumer<SellerProductProvider>(
-              builder: (context, sellerProductProvider, child) {
-                return Builder(builder: (context) {
-                  if (sellerProductProvider.productImages.isEmpty) {
-                    return InkWell(
-                      onTap: () {
-                        context
-                            .read<SellerProductProvider>()
-                            .fetchProductImagesFromGallery(context: context);
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 358,
-                        decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Color.fromRGBO(0, 0, 0, .1))),
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(Icons.add,
-                                size: 40, color: Color.fromRGBO(0, 0, 0, .5)),
-                            SizedBox(height: 5),
-                            Text('Upload Photo',
-                                style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16,
-                                    color: Color.fromRGBO(0, 0, 0, .5))),
-                          ],
-                        ),
-                      ),
-                    );
-                    ;
-                  } else {
-                    List<File> images =
-                        context.read<SellerProductProvider>().productImages;
-                    return SizedBox(
-                      height: MediaQuery.of(context).size.height * .5,
-                      width: MediaQuery.of(context).size.width,
-                      child: ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: images.length,
-                        itemBuilder: (content, index) {
-                          return Builder(
-                            builder: (context) {
-                              return Container(
-                                padding: const EdgeInsets.all(10),
-                                width: MediaQuery.of(context).size.width * .52,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: FileImage(images[index]),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                margin: const EdgeInsets.only(right: 8),
-                              );
-                            },
-                          );
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Consumer<SellerProductProvider>(
+                builder: (context, sellerProductProvider, child) {
+                  return Builder(builder: (context) {
+                    if (sellerProductProvider.productImages.isEmpty) {
+                      return InkWell(
+                        onTap: () {
+                          context
+                              .read<SellerProductProvider>()
+                              .fetchProductImagesFromGallery(context: context);
                         },
-                      ),
-                    );
-                  }
-                });
-              },
-            ),
-            const SizedBox(height: 18),
-            ProductNameField(),
-            ChooseProductCategory(context),
-            ProductDescription(),
-            ProductBrand(),
-            ProductCountryofOrigin(),
-            ProductPrice(),
-            const SizedBox(height: 13),
-            AddProductButton(),
-            const SizedBox(height: 13),
-          ],
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 400,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Color.fromRGBO(0, 0, 0, .1))),
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(Icons.add,
+                                  size: 40, color: Color.fromRGBO(0, 0, 0, .5)),
+                              SizedBox(height: 5),
+                              Text('Upload Photo',
+                                  style: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16,
+                                      color: Color.fromRGBO(0, 0, 0, .5))),
+                            ],
+                          ),
+                        ),
+                      );
+                      ;
+                    } else {
+                      List<File> images =
+                          context.read<SellerProductProvider>().productImages;
+                      return SizedBox(
+                        height: 400,
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: images.length,
+                          itemBuilder: (content, index) {
+                            return Builder(
+                              builder: (context) {
+                                return Container(
+                                  height: MediaQuery.of(context).size.height,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: FileImage(images[index]),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      );
+                    }
+                  });
+                },
+              ),
+              const SizedBox(height: 18),
+              ProductNameField(),
+              ChooseProductCategory(context),
+              ProductDescription(),
+              ProductBrand(),
+              ProductCountryofOrigin(),
+              ProductPrice(),
+              const SizedBox(height: 13),
+              AddProductButton(),
+              const SizedBox(height: 13),
+            ],
+          ),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
+        floatingActionButton: FloatingBackButton(context),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
-      floatingActionButton: FloatingBackButton(context),
     );
   }
 
@@ -220,42 +219,42 @@ class _SellerUploadState extends State<SellerUpload> {
     );
   }
 
-  Widget DiscountedPrice() {
-    return const Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Discounted Price',
-              style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                  color: Color.fromRGBO(53, 53, 53, 1))),
-          SizedBox(height: 8),
-          TextField(
-            decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                borderSide: BorderSide(
-                  color: Color.fromRGBO(69, 137, 216, 1),
-                ),
-              ),
-              hintText: "0000",
-              hintStyle: TextStyle(color: Color.fromRGBO(0, 0, 0, .2)),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                borderSide: BorderSide(
-                  color: Color.fromRGBO(0, 0, 0, .2),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-        ],
-      ),
-    );
-  }
+  // Widget DiscountedPrice() {
+  //   return const Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 20),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Text('Discounted Price',
+  //             style: TextStyle(
+  //                 fontFamily: 'Inter',
+  //                 fontWeight: FontWeight.w600,
+  //                 fontSize: 20,
+  //                 color: Color.fromRGBO(53, 53, 53, 1))),
+  //         SizedBox(height: 8),
+  //         TextField(
+  //           decoration: InputDecoration(
+  //             focusedBorder: OutlineInputBorder(
+  //               borderRadius: BorderRadius.all(Radius.circular(8.0)),
+  //               borderSide: BorderSide(
+  //                 color: Color.fromRGBO(69, 137, 216, 1),
+  //               ),
+  //             ),
+  //             hintText: "0000",
+  //             hintStyle: TextStyle(color: Color.fromRGBO(0, 0, 0, .2)),
+  //             enabledBorder: OutlineInputBorder(
+  //               borderRadius: BorderRadius.all(Radius.circular(8.0)),
+  //               borderSide: BorderSide(
+  //                 color: Color.fromRGBO(0, 0, 0, .2),
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //         const SizedBox(height: 10),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget ProductPrice() {
     return Padding(
