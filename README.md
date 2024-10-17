@@ -1,16 +1,23 @@
 # sukify
 
-A new Flutter project.
+# E-Commerce Mobile Application
 
-## Getting Started
+A fully functional e-commerce mobile application built using Flutter and Firebase. This app allows users to browse products, add items to their cart, make purchases, and manage their profiles. It leverages Firebase for authentication, cloud storage, and real-time database management.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **User Authentication**: Sign up and log in using Firebase Authentication.
+- **Product Listings**: View a catalog of products with details such as images, prices, and descriptions.
+- **Search Functionality**: Easily search for products.
+- **Shopping Cart**: Add, remove, and view items in the cart.
+- **Product Categories**: Browse products by category.
+- **User Profile**: Update user information and view order history.
+- **Admin Dashboard**: Manage product listings, categories, and orders.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Technologies Used
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Flutter**: A powerful UI framework for building native mobile apps.
+- **Firebase Authentication**: Handles user authentication and management.
+- **Firebase Firestore**: A real-time NoSQL database to store product data, user information, and orders.
+- **Firebase Cloud Storage**: To store product images.
+- **Firebase Functions**: (Optional) For server-side logic, such as notifications or order processing.
